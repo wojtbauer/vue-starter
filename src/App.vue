@@ -3,14 +3,14 @@
   <div >
   <h1>Witaj w systemie do zapisów na zajęcia!</h1>
   <div v-if="email.length > 0">
-    <p>Zalogowany jako {{ email }} </p>
-    <button @click="LogOut()">Wyloguj</button>
+ 	<LogoutForm :username="email"
+ 			@logout="LogOut()"></LogoutForm>
   </div>
   <div v-else>
    <login-form @login="LogIn($event)"
    				header="Zaloguj sie"
    				button-label="Log in"></login-form>
-   	<login-form @login="LogIn($event)"
+   <login-form @login="LogIn($event)"
    	  			header="Zarejestruj sie"
    				button-label="Log up"></login-form>
    
@@ -25,7 +25,7 @@ import LoginForm from "./LoginForm";
 import LogoutForm from "./LogoutForm";
 
 export default {
-	components: {LoginForm},
+	components: {LoginForm, LogoutForm},
 	data() {
 		  return {
 		    email: '',

@@ -1,23 +1,27 @@
 <template>
    <div>
-       <label>{{ header }}</label>
-       <input type="email" v-model="email">
-       <button @click="enter()">{{buttonLabel}}</button>
+       <p>Zalogowany jako {{ username }}</p>
+       <button @click="$emit('logout')">Wyloguj</button>
+       <h2>Spotkania</h2>
+       <ol>
+        <li v-for="meeting in meetings">
+          {{meeting}}
+       </li>
+       </ol>
    </div>
 </template>
 
 <script>
 export default {
- props: ['buttonLabel', 'header'],
+ props: ['username'],
  data() {
-     return {
-         email: ''
-     }
- },
- methods: {
-     enter() {
-         this.$emit('logout', this.email);
-     }
+	 return {
+		 meetings: [
+			 'MWO',
+			 'TO'
+		 ]
+	 };
  }
+
 }
 </script>
